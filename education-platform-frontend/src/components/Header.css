@@ -1,5 +1,43 @@
 .header{
   grid-area: header;
-  background-color: aqua;
+  background-color: rgb(136, 76, 179);
   display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login-link{
+  margin-left: auto;
+}
+
+.login-button{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+.login-button:hover{
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button{
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 2rem;
+  
+}
+
+.signup-button:hover{
+  background-color: #218838;
+  transition: background-color 0.3s ease;
 }
