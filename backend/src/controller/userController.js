@@ -19,10 +19,10 @@ exports.createUser = async (req, res) => {
     );
 
     if(result){
-      res.status(409).json({
+      return res.status(409).json({
         message: 'This username already taken'
       })
-      return;
+      
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -32,14 +32,14 @@ exports.createUser = async (req, res) => {
       [username, name, hashedPassword]
     );
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'User created successfully',
     });
   } 
   catch (error) {
     
     console.error('Error creating user:', error);
-    res.status(500).json({
+    return res.status(500).json({
       message: 'Error creating user'
     });
   }
