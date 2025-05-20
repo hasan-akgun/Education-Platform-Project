@@ -12,9 +12,22 @@ exports.createUser = async (req, res) => {
   const {username, name, password} = req.body;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     const result = await pool.query(
+      'SELECT EXISTS( SELECT 1 FROM users WHERE username = $1)',
+      [username]
+    );
+
+    if(result){
+      res.status(409).json({
+        message: 'This username already taken'
+      })
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+     await pool.query(
       'INSERT INTO users (username, name, pass_hash) VALUES ($1, $2, $3) RETURNING *',
       [username, name, hashedPassword]
     );
