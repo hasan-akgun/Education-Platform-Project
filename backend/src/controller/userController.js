@@ -18,7 +18,8 @@ exports.createUser = async (req, res) => {
       [username]
     );
 
-    if(result){
+    if(result.rows[0].exists ){
+      console.log(result)
       return res.status(409).json({
         message: 'This username already taken'
       })
