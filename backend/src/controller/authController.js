@@ -10,7 +10,7 @@ exports.login = async (req, res) => {
 
 
     const userQuery = await pool.query('SELECT id, pass_hash FROM users WHERE username = $1', [username]);
-
+    
     if (userQuery.rows.length === 0) {
       return res.status(401).json({
         message: 'User not found'
