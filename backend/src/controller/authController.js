@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const pool = require('../config/db')
-const { generateToken } = require('../utils/jwtUtils')
+const { generateToken, generateRefreshToken } = require('../utils/jwtUtils')
 
 exports.login = async (req, res) => {
 
@@ -27,10 +27,12 @@ exports.login = async (req, res) => {
     }
 
     const token = generateToken(id);
+    const refreshToken = generateRefreshToken(id);
 
     res.status(200).json({
       success: true,
       token,
+      refreshToken,
       user: {
         id: id
       }
